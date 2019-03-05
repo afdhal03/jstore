@@ -1,37 +1,41 @@
-
 /**
- * Write a description of class Jstore here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Jstore
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
+* <h1>JStore.java</h1>
+* <p>
+* Class ini merupakan main class dari JStore Application
+* </p>
+*
+* @author afdhal kurniawan
+* @version 2019-02-28
+*/
+public class Jstore{
+    
     /**
-     * Constructor for objects of class Jstore
-     */
-    public Jstore()
-    {
-        // initialise instance variables
-        x = 0;
+    * Method JStore merupakan Constructor dari JStore Class
+    * Method ini dapat berisi nilai default dari variabel dalam JStore Class
+    */
+    public Jstore(){
+     
     }
 
+    /**
+    * Method main merupakan main method dari JStore Application
+    * @param args Unused
+    * @return Nothing
+    */
     public static void main (String[] args){
+        Location location =new Location ("padang", "dharmasraya" , "sawit");
+        Supplier supplier = new Supplier (1,"afdhal", "afdhal@gmail.com", "08123456789", location);
+        Item item = new Item (1,"soto", 100, 12000, "makanan", supplier);
+        Invoice invoice = new Invoice (1,item,"05/03/2019",48000);
+        System.out.println(supplier.getName());
+        supplier.setName("ghifari");
+        System.out.println(supplier.getName());
+        item.printData();
+        DataSupplier.addSupplier(suppiler);
     
     }
       
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    
 }
+
+
