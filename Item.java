@@ -34,7 +34,11 @@ public class Item
     /**
     * Kategori dari Object Item yang dibuat
     */
-    private String category;
+    private ItemCategory category;
+    
+    
+    private ItemStatus status;
+    
     
     /**
     * Supplier dari Object Item yang dibuat
@@ -51,15 +55,17 @@ public class Item
     * @param category   Kategori dari objek barang yang dibuat
     * @param Supplier   Supplier dari objek barang yang dibuat
     */
-    public Item(int id   , String name , int stock,
-     int price,     String category,     Supplier supplier)
+    public Item(int id   , String name , 
+     int stock, int price,Supplier supplier,
+     ItemStatus status, ItemCategory category)
     {
         // initialise instance variables
             this.id=id;
             this.name=name; 
             this.stock=stock;
             this.price=price;    
-            this.category=category;      
+            this.category=category; 
+            this.status=status;
             this.supplier=supplier;
     }
     
@@ -99,9 +105,16 @@ public class Item
     * Accessor Method untuk mengambil String Category dari objek Item
     * @return String Category dari Item Object
     */
-    public String getCategory(){
+    public ItemCategory getCategory(){
         return category;
     }
+    
+    
+    public ItemStatus getStatus(){
+        return status;
+    }
+    
+    
     
     /**
     * Accessor Method untuk mengambil Supplier dari objek Item
@@ -147,9 +160,15 @@ public class Item
     * Mutator Method untuk mengubah Category dari objek Item
     * @param category String Category yang diinginkan
     */
-    public void setCategory(String category){
+    public void setCategory(ItemCategory category){
        this.category=category;
     }
+    
+    
+    public void setStatus(ItemStatus status){
+       this.status=status;
+    }
+    
     
     /**
     * Mutator Method untuk mengubah Supplier dari objek Item
@@ -163,7 +182,14 @@ public class Item
     * Sebuah Method untuk melakukan Print Data dari Object Item (name)
     */
     public void printData(){
-       System.out.println(name);
+       System.out.println("==========ITEM=======");
+       System.out.println("ID :" + id);
+       System.out.println("Name :"  + name );
+       System.out.println("Stok :" + stock);
+       System.out.println("Kategori :" + category);
+       System.out.println("Status :" + status);
+       System.out.println("Supplier :" + supplier);
+
     }
 
         

@@ -30,6 +30,13 @@ public class Invoice
     * Total Harga dari Object Invoice yang dibuat
     */
     private int totalPrice;
+    
+    
+    private int totalItem;
+    private InvoiceStatus status;
+    
+    
+    
 
     /**
     * Method Invoice merupakan Constructor dari Invoice Class
@@ -40,13 +47,14 @@ public class Invoice
     * @param totalPrice     Total Harga dari objek invoice yang dibuat
     */
     public Invoice( int id,     Item item,     
-    String date,     int totalPrice)
+    String date,     int totalItem, InvoiceStatus status)
     {
         // initialise instance variables
       this.id=id;
       this.item=item;
       this.date=date;
-      this.totalPrice=totalPrice;
+      this.totalItem=totalItem;
+      this.status=status;
     }
 
     /**
@@ -81,6 +89,24 @@ public class Invoice
          return totalPrice;
     }
     
+    
+    public int getTotalItem(){
+         return totalItem;
+    }
+    public InvoiceStatus getInvoiceStatus(){
+         return status;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
     * Mutator Method untuk mengubah ID dari objek Invoice
     * @param id Nilai ID yang diinginkan
@@ -113,11 +139,28 @@ public class Invoice
          this.totalPrice=totalPrice;
     }
     
+    
+    public void setTotalItem(int totalItem){
+         this.totalItem=totalItem;
+    }
+    public void setInvoiceStatus(InvoiceStatus status){
+         this.status=status;
+    }
+    
+    
+    
+    
     /**
     * Sebuah Method untuk melakukan Print Data dari Object Invoice (totalPrice)
     */
     public void printData(){
-         System.out.println(totalPrice);
+         System.out.println("==========INVOICE=======");
+         System.out.println("ID :" + id);
+         System.out.println("Date :" + date);
+         System.out.println("Item yang terdapat :" + item);
+         System.out.println("Total Item :" + totalItem);
+         System.out.println("Total harga :" + totalPrice);
+         System.out.println("Status :" + status);
     }
     
     

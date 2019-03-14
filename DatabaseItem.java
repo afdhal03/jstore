@@ -9,7 +9,7 @@
 * @author afdhal kurniawan
 * @version 2019-02-28
 */
-public class Database_Item
+public class DatabaseItem
 {
     /**
     * List Array dari Item yang dibuat
@@ -19,14 +19,14 @@ public class Database_Item
     /**
     * Item dari Object Database Item yang dibuat
     */
-    private Item item;
+    public static Item itemDB;
 
     
     /**
     * Method DatabaseItem merupakan Constructor dari DatabaseItem Class
     * Method ini dapat berisi nilai default dari variabel dalam DatabaseItem Class
     */
-    public Database_Item()
+    public DatabaseItem()
     {
         // initialise instance variables
         
@@ -38,8 +38,10 @@ public class Database_Item
     * @param item Item yang ingin dimasukan kedalam database
     * @return nilai boolean apakah pemasukan item berhasil atau gagal
     */
-    public boolean addItem(Item item){
-        return true;
+    public static boolean addItem(Item item){
+        itemDB = item; // use this to prevent confusion as the name variable is same
+        
+            return false;
     }
     
     /**
@@ -48,16 +50,16 @@ public class Database_Item
     * @param item Item yang ingin dihapus dari database
     * @return nilai boolean apakah penghapusan item berhasil atau gagal
     */
-    public boolean removeItem(){
-        return true;
+    public static boolean removeItem(){
+        return false;
     }
     
      /**
     * Accessor Method untuk mengambil Item dari objek DatabaseItem
     * @return Item dari DatabaseItem Object
     */
-    public Item getItem(){
-        return item;
+    public static Item getItem(){
+        return itemDB;
     }
     
     /**
