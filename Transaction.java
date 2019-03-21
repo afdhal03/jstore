@@ -9,115 +9,64 @@ import java.util.*;
 
 public class Transaction
 {
-
- public void orderNewItem(Supplier supplier)
+    public static void orderNewItem(Item item)
     {
-        Item newItem = new Item(1, "name", 1, 1, supplier, 
-                                ItemStatus.New, ItemCategory.Electronics);
-                                
-        DatabaseItem.addItem(newItem);
-                                
-        Date date = new Date();
-        Invoice newInvoice = new Invoice(1, newItem, 
-                                        date.toString(),
-                                        newItem.getPrice(),InvoiceStatus.Paid);
-                                
-        newItem.setStatus(ItemStatus.New); 
-        newInvoice.setInvoiceStatus(InvoiceStatus.Paid);
-        
-        System.out.println("============Order New Item============");
-        newItem.printData();
-        newInvoice.printData();
+        Invoice invoice = new Buy_Paid(1, item, "25/03/2020", 1, item.getPrice());
+        if (invoice instanceof Sell_Paid)
+        {
+            System.out.println("Benar Invoice Type adalah Sell_Paid");
+        }else
+        {
+            System.out.println("Salah, Invoice Type adalah Sell_Paid");
+        }
+       
     }
+
+ 
     
     
-    public void orderSecondItem(Supplier supplier)
+    public static void orderSecondItem(Supplier supplier)
     {
-         Item newItem = new Item(1, "Meja", 1, 1, supplier, 
-                                ItemStatus.Second, ItemCategory.Electronics);
-                                
-        DatabaseItem.addItem(newItem);
-                                
-        Date date = new Date();
-        Invoice newInvoice = new Invoice(1, newItem, 
-                                        date.toString(),
-                                        newItem.getPrice(),InvoiceStatus.Paid);
-                                
-        newItem.setStatus(ItemStatus.Second); 
-        newInvoice.setInvoiceStatus(InvoiceStatus.Paid);
-        
-        System.out.println("============Order New Item============");        
-        newInvoice.printData();         
-        newItem.printData();   
-        System.out.println();
+         Invoice invoice = new Buy_Paid(1, item, "25/03/2020", 1, item.getPrice());
+        if (invoice instanceof Sell_Paid)
+        {
+            System.out.println("Benar Invoice Type adalah Sell_Paid");
+        }else
+        {
+            System.out.println("Salah, Invoice Type adalah Sell_Paid");
+        }
     }
  
     
-    public void orderRefurbishedItem(Supplier supplier)
+    public static void orderRefurbishedItem(Supplier supplier)
     {
-         Item newItem = new Item(1, "Meja", 1, 1, supplier, 
-                                ItemStatus.Refurbished, ItemCategory.Electronics);
-           
-        DatabaseItem.addItem(newItem);                                
-                                
-        Date date = new Date();
-        Invoice newInvoice = new Invoice(1, newItem, 
-                                        date.toString(),
-                                        newItem.getPrice(),InvoiceStatus.Paid);
-                                
-        newItem.setStatus(ItemStatus.Refurbished); 
-        newInvoice.setInvoiceStatus(InvoiceStatus.Paid);
-        
-        System.out.println("============Order New Item============");  
-        newInvoice.printData();         
-        newItem.printData();  
-        System.out.println();
+         Invoice invoice = new Buy_Paid(1, item, "25/03/2020", 1, item.getPrice());
+        if (invoice instanceof Sell_Paid)
+        {
+            System.out.println("Benar Invoice Type adalah Sell_Paid");
+        }else
+        {
+            System.out.println("Salah, Invoice Type adalah Sell_Paid");
+        }
     }
     
-    public void sellItemPaid(Item item)
+    public static void sellItemPaid(Item item)
     {
-        Date date = new Date();
-        
-        Invoice newInvoice = new Invoice(1, item, date.toString(),
-                                        item.getPrice(),InvoiceStatus.Paid);
-        newInvoice.setInvoiceStatus(InvoiceStatus.Paid); 
-        item.setStatus(ItemStatus.Sold);
-        
-        System.out.println("============Order New Item============");        
-        newInvoice.printData();
-        item.printData();     
-        System.out.println();
+        Invoice invoice = new Sell_Paid(1, item, "25/03/2020", 1, item.getPrice());
+        return printData;
     }
     
-    public void sellItemUnpaid(Item item)
+    public static void sellItemUnpaid(Item item)
     {
-         Date date = new Date();
-        
-        Invoice newInvoice = new Invoice(1, item, date.toString(),
-                                        item.getPrice(),InvoiceStatus.Paid);
-        newInvoice.setInvoiceStatus(InvoiceStatus.Unpaid); 
-        item.setStatus(ItemStatus.Sold);
-        
-        System.out.println("============Order New Item============");        
-        newInvoice.printData();
-        item.printData();   
-        System.out.println();
+         Invoice invoice = new Sell_Unpaid(1, item, "25/03/2020", 1, item.getPrice());
+        return printData;
         
     }
     
-    public void sellItemInstallment(Item item)
+    public static void sellItemInstallment(Item item)
     {
-        Date date = new Date();
-        
-        Invoice newInvoice = new Invoice(1, item, date.toString(),
-                                        item.getPrice(),InvoiceStatus.Paid);
-        newInvoice.setInvoiceStatus(InvoiceStatus.Installment); 
-        item.setStatus(ItemStatus.Sold);
-        
-        System.out.println("============Order New Item============");        
-        newInvoice.printData();
-        item.printData();    
-        System.out.println();
+       Invoice invoice = new Sell_Installment(1, item, "25/03/2020", 1, item.getPrice());
+       return printData;
     }
     
 }

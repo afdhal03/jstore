@@ -9,7 +9,7 @@
 * @author afdhal kurniawan
 * @version 2019-02-28
 */
-public class Invoice
+public abstract class Invoice
 {
     /**
     * ID dari Object Invoice yang dibuat
@@ -29,12 +29,12 @@ public class Invoice
     /**
     * Total Harga dari Object Invoice yang dibuat
     */
-    private int totalPrice;
+    protected int totalPrice;
     
     
     private int totalItem;
     private InvoiceStatus status;
-    
+    private InvoiceType type;
     
     
 
@@ -47,13 +47,14 @@ public class Invoice
     * @param totalPrice     Total Harga dari objek invoice yang dibuat
     */
     public Invoice( int id,     Item item,     
-    String date,     int totalItem, InvoiceStatus status)
+    String date,     int totalItem, int totalPrice, InvoiceStatus status )
     {
         // initialise instance variables
       this.id=id;
       this.item=item;
       this.date=date;
       this.totalItem=totalItem;
+      this.totalPrice=totalPrice;
       this.status=status;
     }
 
@@ -97,6 +98,9 @@ public class Invoice
          return status;
     }
     
+    public InvoiceType getInvoiceType(){
+         return type;
+    }
     
     
     

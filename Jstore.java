@@ -16,22 +16,22 @@ public class Jstore{
     public Jstore(){
      
     }
-
+ 
     /**
     * Method main merupakan main method dari JStore Application
     * @param args Unused
     * @return Nothing
     */
     public static void main (String[] args){
-        Location location =new Location ("padang", "dharmasraya" , "sawit");
-        Supplier supplier = new Supplier (1,"afdhal", "afdhal@gmail.com", "08123456789", location);
-        //Item item = new Item (1,"soto", 100, 12000, "makanan", supplier);
-        //Invoice invoice = new Invoice (1,item,"05/03/2019",48000);
-        System.out.println(supplier.getName());
-        supplier.setName("ghifari");
-        System.out.println(supplier.getName());
-        //item.printData();
-        DatabaseSupplier.addSupplier(supplier);
+       Location location = new Location("Depok", "Jawa Barat", "ramai");
+        Supplier supplier = new Supplier(1, "afdhal", "afdhal.com", "123", location);
+        Item item = new Item(1, "Afdhal", 100, ItemStatus.New, 10000, supplier , ItemCategory.Electronics);
+        DatabaseItem.addItem(item);
+        Transaction.orderNewItem(item);
+        Transaction.sellItemPaid(item);
+        Transaction.sellItemUnpaid(item);
+        Transaction.sellItemInstallment(item);
+ 
     
     }
       

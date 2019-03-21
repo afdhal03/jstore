@@ -1,8 +1,8 @@
 /**
  * Enumeration class ItemCategory - write a description of the enum class here
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author afdhal kurniawan
+ * @version 2019-03-13
  */
 
 public enum InvoiceStatus
