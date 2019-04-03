@@ -66,4 +66,5 @@ public class Sell_Installment extends Invoice
         System.out.println("Total Price: "+totalPrice);
         System.out.println("Price Installment: "+ installmentPrice);
     }
+    
 }
