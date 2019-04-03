@@ -55,18 +55,16 @@ public class Item
     * @param category   Kategori dari objek barang yang dibuat
     * @param Supplier   Supplier dari objek barang yang dibuat
     */
-    public Item(int id   , String name , 
-     int stock, int price,Supplier supplier,
-     ItemStatus status, ItemCategory category)
+    public Item(int id, String name, int stock, ItemStatus status, int price, Supplier supplier, ItemCategory category)
     {
         // initialise instance variables
-            this.id=id;
-            this.name=name; 
-            this.stock=stock;
-            this.price=price;    
-            this.category=category; 
-            this.status=status;
-            this.supplier=supplier;
+           this.id=id;
+        this.name=name;
+        this.stock=stock;
+        this.status=status;
+        this.price=price;    
+        this.supplier=supplier;
+        this.category=category;
     }
     
     /**
@@ -182,13 +180,13 @@ public class Item
     * Sebuah Method untuk melakukan Print Data dari Object Item (name)
     */
     public void printData(){
-       System.out.println("==========ITEM=======");
-       System.out.println("ID :" + id);
-       System.out.println("Name :"  + name );
-       System.out.println("Stok :" + stock);
-       System.out.println("Kategori :" + category);
-       System.out.println("Status :" + status);
-       System.out.println("Supplier :" + supplier);
+        System.out.println("==========ITEM==========");
+        System.out.println("ID: " + this.id);
+        System.out.println("Name: " + this.name);
+        System.out.println("Stock: " + this.stock);
+        System.out.println("Category: " + this.category);
+        System.out.println("Status: " + this.status);
+        System.out.println("Supplier: " + supplier.getName());
 
     }
 

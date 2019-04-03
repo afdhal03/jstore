@@ -94,10 +94,10 @@ public class Location
     * Sebuah Method untuk melakukan Print Data dari Object Location (province)
     */
     public void printData(){
-         System.out.println("==========LOCATION=======");
-         System.out.println("Provinsi :" + province);
-         System.out.println("Kota :" + city);
-         System.out.println("Deksripsi :" + description);
+        System.out.println("==========LOCATION=======");
+        System.out.println("Provinsi :" + this.province);
+        System.out.println("Kota :" + this.city);
+        System.out.println("Deksripsi :" + this.description);
     }
 
         

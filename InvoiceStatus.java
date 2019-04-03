@@ -13,7 +13,7 @@ public enum InvoiceStatus
     
     private String Status;
     
-    private InvoiceStatus(String Status) {
+   InvoiceStatus(String Status) {
      this.Status = Status;
    }
 

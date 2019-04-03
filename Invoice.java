@@ -46,16 +46,14 @@ public abstract class Invoice
     * @param date           Tanggal dari objek invoice yang dibuat
     * @param totalPrice     Total Harga dari objek invoice yang dibuat
     */
-    public Invoice( int id,     Item item,     
-    String date,     int totalItem, int totalPrice, InvoiceStatus status )
+    public Invoice( int id, Item item, String date, int totalItem, int totalPrice)
     {
         // initialise instance variables
       this.id=id;
-      this.item=item;
-      this.date=date;
-      this.totalItem=totalItem;
-      this.totalPrice=totalPrice;
-      this.status=status;
+        this.item=item;
+        this.date=date;
+        this.totalPrice=totalPrice;
+        this.totalItem=totalItem;
     }
 
     /**
@@ -90,26 +88,13 @@ public abstract class Invoice
          return totalPrice;
     }
     
+    public abstract InvoiceStatus getInvoiceStatus();
+    
+    public abstract InvoiceType getInvoiceType();
     
     public int getTotalItem(){
          return totalItem;
     }
-    public InvoiceStatus getInvoiceStatus(){
-         return status;
-    }
-    
-    public InvoiceType getInvoiceType(){
-         return type;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /**
     * Mutator Method untuk mengubah ID dari objek Invoice
@@ -147,6 +132,7 @@ public abstract class Invoice
     public void setTotalItem(int totalItem){
          this.totalItem=totalItem;
     }
+    
     public void setInvoiceStatus(InvoiceStatus status){
          this.status=status;
     }

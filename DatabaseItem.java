@@ -41,7 +41,7 @@ public class DatabaseItem
     public static boolean addItem(Item item){
         itemDB = item; // use this to prevent confusion as the name variable is same
         
-            return false;
+            return true;
     }
     
     /**
@@ -51,7 +51,8 @@ public class DatabaseItem
     * @return nilai boolean apakah penghapusan item berhasil atau gagal
     */
     public static boolean removeItem(){
-        return false;
+       itemDB = null;
+        return true;
     }
     
      /**
