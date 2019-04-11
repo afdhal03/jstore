@@ -93,6 +93,14 @@ public class Location
     /**
     * Sebuah Method untuk melakukan Print Data dari Object Location (province)
     */
+   
+   public String toString()
+    {
+        return "========LOCATION========"+
+        "\nprovinsi:"+province+
+        "\nkota:"+city+
+        "\ndeskripsi:"+description;
+    }
     public void printData(){
         System.out.println("==========LOCATION=======");
         System.out.println("Provinsi :" + this.province);

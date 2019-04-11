@@ -14,6 +14,6 @@ comment4.params=
 comment4.target=Item\ getItem()
 comment4.text=\r\n\ Accessor\ Method\ untuk\ mengambil\ Item\ dari\ objek\ DatabaseItem\r\n\ @return\ Item\ dari\ DatabaseItem\ Object\r\n
 comment5.params=
-comment5.target=java.lang.String[]\ getItemDatabase()
+comment5.target=Item[]\ getItemDatabase()
 comment5.text=\r\n\ Accessor\ Method\ untuk\ mengambil\ List\ Array\ Item\ dari\ objek\ DatabaseItem\r\n\ @return\ List\ Array\ Item\ dari\ DatabaseItem\ Object\r\n
 numComments=6

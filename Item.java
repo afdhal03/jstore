@@ -179,6 +179,18 @@ public class Item
     /**
     * Sebuah Method untuk melakukan Print Data dari Object Item (name)
     */
+   
+   public String toString()
+    {
+        return "==========ITEM======="+
+        "\nID :" + id+
+        "\nName :"  + name+
+        "\nStok :" + stock+
+        "\nKategori :" + category+
+        "\nStatus :" + status+
+        "\nSupplier :" + supplier.getName();
+    }
+    
     public void printData(){
         System.out.println("==========ITEM==========");
         System.out.println("ID: " + this.id);

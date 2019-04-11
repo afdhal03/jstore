@@ -46,15 +46,13 @@ public class Supplier
     * @param phoneNumber    Nomor Telepon dari objek supplier yang dibuat
     * @param location       Lokasi dari objek supplier yang dibuat
     */
-    public Supplier(int id,     String name,
-    String email,     String phoneNumber,     Location location)
+     public Supplier(int id, String name, String email, String phoneNumber, Location location)
     {
-        // initialise instance variables
-      this.id=id;
-      this.name=name;
-      this.email=email;
-      this.phoneNumber=phoneNumber;
-      this.location=location;
+        this.id=id;
+        this.name=name;
+        this.email=email;
+        this.phoneNumber=phoneNumber;
+        this.location=location;
     }
     
     /**
@@ -136,6 +134,17 @@ public class Supplier
     public void setLocation(Location location){
          this.location=location;
     }
+    
+    public String toString()
+    {
+        return "SUPPLIER"+
+        "\nID: " + id+
+        "\nName: " + name+
+        "\nEmail: " + email+
+        "\nPhone Number: " + phoneNumber+
+        "\nLocation: " + location.getCity();
+    }
+    
     
     /**
     * Sebuah Method untuk melakukan Print Data dari Object Invoice (name)

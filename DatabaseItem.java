@@ -14,12 +14,12 @@ public class DatabaseItem
     /**
     * List Array dari Item yang dibuat
     */
-    private String listItem[];
+     private  static Item[] listItem;
     
     /**
     * Item dari Object Database Item yang dibuat
     */
-    public static Item itemDB;
+    
 
     
     /**
@@ -38,10 +38,10 @@ public class DatabaseItem
     * @param item Item yang ingin dimasukan kedalam database
     * @return nilai boolean apakah pemasukan item berhasil atau gagal
     */
-    public static boolean addItem(Item item){
-        itemDB = item; // use this to prevent confusion as the name variable is same
-        
-            return true;
+     public static boolean addItem(Item item)
+    {
+        listItem[0] = item;
+        return true;
     }
     
     /**
@@ -51,23 +51,24 @@ public class DatabaseItem
     * @return nilai boolean apakah penghapusan item berhasil atau gagal
     */
     public static boolean removeItem(){
-       itemDB = null;
-        return true;
+       return true;
     }
     
      /**
     * Accessor Method untuk mengambil Item dari objek DatabaseItem
     * @return Item dari DatabaseItem Object
     */
-    public static Item getItem(){
-        return itemDB;
+    public Item getItem()
+    {
+        return listItem[0];
     }
     
     /**
     * Accessor Method untuk mengambil List Array Item dari objek DatabaseItem
     * @return List Array Item dari DatabaseItem Object
     */
-    public String[] getItemDatabase(){
+     public Item[] getItemDatabase()
+    {
         return listItem;
     }
 

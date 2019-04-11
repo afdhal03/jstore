@@ -27,10 +27,10 @@ public class Jstore{
        Supplier supplier = new Supplier(1, "afdhal", "afdhal.com", "123",location);
        Item item = new Item(1, "Afdhal", 100, ItemStatus.New, 10000, supplier , ItemCategory.Electronics);
        DatabaseItem.addItem(item);
-       Transaction.orderNewItem(DatabaseItem.getItem());
-       Transaction.sellItemPaid(DatabaseItem.getItem());
-       Transaction.sellItemUnpaid(DatabaseItem.getItem());
-       Transaction.sellItemInstallment(DatabaseItem.getItem());
+       //Transaction.orderNewItem(DatabaseItem.getItem());
+       //Transaction.sellItemPaid(DatabaseItem.getItem());
+       //Transaction.sellItemUnpaid(DatabaseItem.getItem());
+       //Transaction.sellItemInstallment(DatabaseItem.getItem());
         
     }
       

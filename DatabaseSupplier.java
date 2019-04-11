@@ -14,12 +14,12 @@ public class DatabaseSupplier
     /**
     * List Array dari Supplier yang dibuat
     */
-    private String listSupplier[];
+    private Supplier[] listSupplier;
     
     /**
     * Supplier dari Object Database Supplier yang dibuat
     */
-    private Supplier supplier;
+    //private Supplier supplier;
 
     /**
     * Method DatabaseSupplier merupakan Constructor dari DatabaseSupplier Class
@@ -36,7 +36,7 @@ public class DatabaseSupplier
     * @return nilai boolean apakah pemasukan supplier berhasil atau gagal
     */
     public static boolean addSupplier(Supplier supplier){
-        return true;
+        return false;
     }
     
     /**
@@ -53,15 +53,17 @@ public class DatabaseSupplier
     * Accessor Method untuk mengambil Supplier dari objek DatabaseSupplier
     * @return Supplier dari DatabaseSupplier Object
     */
-    public Supplier getSupplier(){
-        return supplier;
+    public Supplier getSupplier()
+    {
+        return listSupplier[0];
     }
 
     /**
     * Accessor Method untuk mengambil List Array Supplier dari objek DatabaseSupplier
     * @return List Array Supplier dari DatabaseSupplier Object
     */
-    public String[] getListSupplier(){
+    public Supplier[] getListSupllier()
+    {
         return listSupplier;
     }
 

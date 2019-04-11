@@ -1,4 +1,4 @@
-
+import java.util.Calendar;
 /**
 * <h1>Invoice.java</h1>
 * <p>
@@ -9,7 +9,7 @@
 * @author afdhal kurniawan
 * @version 2019-02-28
 */
-public abstract class Invoice
+abstract public class Invoice
 {
     /**
     * ID dari Object Invoice yang dibuat
@@ -24,17 +24,17 @@ public abstract class Invoice
     /**
     * Tanggal dari Object Invoice yang dibuat
     */
-    private String date;
+    private Calendar date;
     
     /**
     * Total Harga dari Object Invoice yang dibuat
     */
-    protected int totalPrice;
+    private int totalPrice;
     
     
     private int totalItem;
-    private InvoiceStatus status;
-    private InvoiceType type;
+    //private InvoiceStatus status;
+    //private InvoiceType type;
     
     
 
@@ -46,14 +46,13 @@ public abstract class Invoice
     * @param date           Tanggal dari objek invoice yang dibuat
     * @param totalPrice     Total Harga dari objek invoice yang dibuat
     */
-    public Invoice( int id, Item item, String date, int totalItem, int totalPrice)
+    public Invoice(int id, Item item, int totalItem)
     {
-        // initialise instance variables
-      this.id=id;
+        this.id=id;
         this.item=item;
-        this.date=date;
-        this.totalPrice=totalPrice;
         this.totalItem=totalItem;
+        setTotalPrice(totalItem*item.getPrice());
+        this.date=Calendar.getInstance();
     }
 
     /**
@@ -76,8 +75,9 @@ public abstract class Invoice
     * Accessor Method untuk mengambil String Date dari objek Invoice
     * @return String Date dari Invoice Object
     */
-    public String getDate(){
-         return date;
+    public Calendar getDate()
+    {
+        return date;
     }
     
     /**
@@ -88,13 +88,15 @@ public abstract class Invoice
          return totalPrice;
     }
     
-    public abstract InvoiceStatus getInvoiceStatus();
-    
-    public abstract InvoiceType getInvoiceType();
-    
-    public int getTotalItem(){
-         return totalItem;
+    public int getTotalItem()
+    {
+        return totalItem;
     }
+    
+    abstract public InvoiceStatus getInvoiceStatus();
+    
+    abstract public InvoiceType getInvoiceType();
+    
     
     /**
     * Mutator Method untuk mengubah ID dari objek Invoice
@@ -116,8 +118,9 @@ public abstract class Invoice
     * Mutator Method untuk mengubah Date dari objek Invoice
     * @param date String Date yang diinginkan
     */
-    public void setDate(String date){
-         this.date=date;
+    public void setDate(Calendar date)
+    {
+        this.date=date;
     }
     
     /**
@@ -133,11 +136,10 @@ public abstract class Invoice
          this.totalItem=totalItem;
     }
     
-    public void setInvoiceStatus(InvoiceStatus status){
-         this.status=status;
-    }
+       
+    public abstract void setInvoiceStatus(InvoiceStatus status);
     
-    
+    public abstract String toString();
     
     
     /**
@@ -150,7 +152,7 @@ public abstract class Invoice
          System.out.println("Item yang terdapat :" + item);
          System.out.println("Total Item :" + totalItem);
          System.out.println("Total harga :" + totalPrice);
-         System.out.println("Status :" + status);
+         //System.out.println("Status :" + status);
     }
     
     

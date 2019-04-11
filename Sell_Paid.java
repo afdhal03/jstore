@@ -1,41 +1,69 @@
 
 /**
- * Write a description of class Sell_Paid here.
+ * Write a description of class Buy_Paid here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Sell_Paid  extends Invoice
+public class Sell_Paid extends Invoice
 {
-    // instance variables - replace the example below with your own
-   private static final InvoiceType INVOICE_TYPE = InvoiceType.Sell;
-    private static final InvoiceStatus INVOICE_STATUS = InvoiceStatus.Paid;
-
+    static final private InvoiceType INVOICE_TYPE=InvoiceType.Sell;
+    static final private InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
+    private Customer customer;
+    
+    /**
+     * Constructor for objects of class Buy_Paid
+     */
+    public Sell_Paid(int id, Item item, int totalItem, Customer customer)
+    {
+        super(id, item, totalItem);
+        this.customer=customer;
+    }
 
     /**
-     * Constructor for objects of class Sell_Paid
+     * An example of a method - replace this comment with your own
+     *
+     * @param  y  a sample parameter for a method
+     * @return    the sum of x and y
      */
-    public Sell_Paid(int id,     Item item,     
-    String date,     int totalItem, int totalPrice)
+    public Customer getCustomer()
     {
-      super( id,      item,   date,   totalItem,  totalPrice);
-    }
-
-    public InvoiceStatus getInvoiceStatus(){
-         return INVOICE_STATUS;
+        return customer;
     }
     
-    public InvoiceType getInvoiceType(){
-         return INVOICE_TYPE;
+    public InvoiceStatus getInvoiceStatus()
+    {
+        return INVOICE_STATUS;
     }
     
-    public void printData(){
-        System.out.println("==========INVOICE=======");
-        System.out.println("ID: "+getId());
-        System.out.println("Date: "+getDate());
-        System.out.println("Item: "+getItem().getName());
-        System.out.println("Invoice Status: "+getInvoiceStatus());
-        System.out.println("Invoice Type: "+getInvoiceType());
-        System.out.println("Total Price: "+getTotalPrice()); 
+    public InvoiceType getInvoiceType()
+    {
+        return INVOICE_TYPE;
+    }
+    
+    public void setCustomer(Customer customer)
+    {
+        this.customer=customer;
+    }
+    
+    public void setInvoiceStatus(InvoiceStatus status)
+    {
+    }
+    
+    public String toString()
+    {
+        return "==========INVOICE======="+
+        "\nID ="+getId()+
+        "\nItem =" + getItem().getName()+
+        "\nAmount ="+ getTotalItem()+
+        "\nBuy date =" + getDate()+
+        "\nPrice ="+(getTotalPrice()/getTotalItem())+
+        "\nPrice total =" + getTotalPrice()+
+        "\nSupplier ID ="+ getItem().getSupplier().getId()+
+        "\nSupplier name ="+ getItem().getSupplier().getName()+
+        "\nCustomer ID ="+ getCustomer().getId()+
+        "\nCustomer name ="+ getCustomer().getName()+
+        "\nStatus = PAID"+
+        "Sell success";
     }
 }
