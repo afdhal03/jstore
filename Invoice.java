@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.util.ArrayList;
 /**
 * <h1>Invoice.java</h1>
 * <p>
@@ -19,7 +20,7 @@ abstract public class Invoice
     /**
     * Item dari Object Invoice yang dibuat
     */
-    private Item item;
+    private ArrayList<Integer> item;
     
     /**
     * Tanggal dari Object Invoice yang dibuat
@@ -31,8 +32,10 @@ abstract public class Invoice
     */
     private int totalPrice;
     
+    private boolean isActive;
+    private Customer customer;
     
-    private int totalItem;
+    //private int totalItem;
     //private InvoiceStatus status;
     //private InvoiceType type;
     
@@ -46,15 +49,12 @@ abstract public class Invoice
     * @param date           Tanggal dari objek invoice yang dibuat
     * @param totalPrice     Total Harga dari objek invoice yang dibuat
     */
-    public Invoice(int id, Item item, int totalItem)
+    public Invoice(ArrayList<Integer> item)
     {
-        this.id=id;
         this.item=item;
-        this.totalItem=totalItem;
-        setTotalPrice(totalItem*item.getPrice());
-        this.date=Calendar.getInstance();
+        id=DatabaseInvoice.getLastInvoiceID()+1;
     }
-
+    
     /**
     * Accessor Method untuk mengambil nilai ID dari objek Invoice
     * @return Nilai ID dari Invoice Object
@@ -67,7 +67,7 @@ abstract public class Invoice
     * Accessor Method untuk mengambil Item dari objek Invoice
     * @return Item dari Invoice Object
     */
-    public Item getItem(){
+    public ArrayList<Integer> getItem(){
          return item;
     }
     
@@ -88,15 +88,19 @@ abstract public class Invoice
          return totalPrice;
     }
     
-    public int getTotalItem()
-    {
-        return totalItem;
-    }
-    
     abstract public InvoiceStatus getInvoiceStatus();
     
     abstract public InvoiceType getInvoiceType();
     
+    public boolean getIsActive()
+    {
+        return isActive;
+    }
+    
+    public Customer getCustomer()
+    {
+        return customer;
+    }
     
     /**
     * Mutator Method untuk mengubah ID dari objek Invoice
@@ -110,8 +114,9 @@ abstract public class Invoice
     * Mutator Method untuk mengubah Item dari objek Invoice
     * @param item Item yang diinginkan
     */
-    public void setItem(Item item){
-         this.item=item;
+    public void setItem(ArrayList<Integer> item)
+    {
+        this.item=item;
     }
     
     /**
@@ -127,20 +132,22 @@ abstract public class Invoice
     * Mutator Method untuk mengubah ID dari objek Invoice
     * @param totalPrice Nilai TotalPrice yang diinginkan
     */
-    public void setTotalPrice(int totalPrice){
-         this.totalPrice=totalPrice;
+    public void setTotalPrice(int totalPrice)
+    {
+        for(Integer invoice : item)
+        {
+            totalPrice=totalPrice+DatabaseItem.getItemFromID(invoice).getPrice();
+        }
     }
-    
-    
-    public void setTotalItem(int totalItem){
-         this.totalItem=totalItem;
-    }
-    
-       
+      
     public abstract void setInvoiceStatus(InvoiceStatus status);
     
     public abstract String toString();
     
+    public void setIsActive(boolean isActive)
+    {
+        this.isActive=isActive;
+     }
     
     /**
     * Sebuah Method untuk melakukan Print Data dari Object Invoice (totalPrice)
@@ -150,7 +157,7 @@ abstract public class Invoice
          System.out.println("ID :" + id);
          System.out.println("Date :" + date);
          System.out.println("Item yang terdapat :" + item);
-         System.out.println("Total Item :" + totalItem);
+         //System.out.println("Total Item :" + totalItem);
          System.out.println("Total harga :" + totalPrice);
          //System.out.println("Status :" + status);
     }

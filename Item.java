@@ -55,16 +55,15 @@ public class Item
     * @param category   Kategori dari objek barang yang dibuat
     * @param Supplier   Supplier dari objek barang yang dibuat
     */
-    public Item(int id, String name, int stock, ItemStatus status, int price, Supplier supplier, ItemCategory category)
+    public Item(String name, int stock, int price, ItemCategory category, ItemStatus status, Supplier supplier)
     {
-        // initialise instance variables
-           this.id=id;
+        id=DatabaseItem.getLastItemID()+1;
         this.name=name;
         this.stock=stock;
-        this.status=status;
-        this.price=price;    
-        this.supplier=supplier;
+        this.price=price;
         this.category=category;
+        this.status=status;
+        this.supplier=supplier;
     }
     
     /**

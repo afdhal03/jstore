@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
 * <h1>Item.java</h1>
 * <p>
@@ -14,63 +14,122 @@ public class DatabaseItem
     /**
     * List Array dari Item yang dibuat
     */
-     private  static Item[] listItem;
+     //private  static Item[] listItem;
     
+    private static ArrayList<Item> ITEM_DATABASE = new ArrayList<Item>();
+    private static int LAST_ITEM_ID=0;
+     
+    //Menambah item
     /**
-    * Item dari Object Database Item yang dibuat
-    */
-    
-
-    
-    /**
-    * Method DatabaseItem merupakan Constructor dari DatabaseItem Class
-    * Method ini dapat berisi nilai default dari variabel dalam DatabaseItem Class
-    */
-    public DatabaseItem()
+     * Method addItem()
+     * @param item
+     * @return true
+     */
+    public static ArrayList<Item> getItemDatabase()
     {
-        // initialise instance variables
-        
+        return ITEM_DATABASE;
     }
     
+    //Mengapus item
     /**
-    * Method ini merupakan method yang menambahkan Item baru
-    * Kedalam Database Item
-    * @param item Item yang ingin dimasukan kedalam database
-    * @return nilai boolean apakah pemasukan item berhasil atau gagal
-    */
-     public static boolean addItem(Item item)
+     * Method removeItem()
+     * @param item
+     * @return true
+     */
+    public static int getLastItemID()
     {
-        listItem[0] = item;
-        return true;
+        return LAST_ITEM_ID;
     }
     
+    //Menampilkan item
     /**
-    * Method ini merupakan method yang menghapus Item
-    * Dari Database Item
-    * @param item Item yang ingin dihapus dari database
-    * @return nilai boolean apakah penghapusan item berhasil atau gagal
-    */
-    public static boolean removeItem(){
-       return true;
-    }
-    
-     /**
-    * Accessor Method untuk mengambil Item dari objek DatabaseItem
-    * @return Item dari DatabaseItem Object
-    */
-    public Item getItem()
+     * Method getItem()
+     * @return item
+     */
+    public static boolean addItem(Item item)
     {
-        return listItem[0];
+        boolean value=false;
+        for(Item itemDB : ITEM_DATABASE)
+        {
+            if(item.getName()!=itemDB.getName()&&item.getStatus()!=itemDB.getStatus()&&item.getSupplier()!=itemDB.getSupplier())
+            {
+            ITEM_DATABASE.add(item);
+            //tambahan
+            LAST_ITEM_ID=item.getId();
+            value=true;
+            }
+        }
+        return value;
     }
     
+    //Menampilkan list item
     /**
-    * Accessor Method untuk mengambil List Array Item dari objek DatabaseItem
-    * @return List Array Item dari DatabaseItem Object
-    */
-     public Item[] getItemDatabase()
+     * Method getItemDatabase()
+     * @return listItem
+     */
+    public static Item getItemFromID(int id)
     {
-        return listItem;
+        Item value=null;
+        for(Item itemDB : ITEM_DATABASE)
+        {
+            if(itemDB.getId()==id)
+            {
+                value=itemDB;
+            }
+        }
+        return value;
     }
-
     
+    public static ArrayList<Item> getItemFromSupplier(Supplier supplier)
+    {
+        ArrayList<Item> value=null;
+        for(Item itemDB : ITEM_DATABASE)
+        {
+            if(itemDB.getSupplier()==supplier)
+            {
+                value.add(itemDB);
+            }
+        }
+        return value;
+    }
+    
+    public static ArrayList<Item> getItemFromCategory(Item category)
+    {
+        ArrayList<Item> value=null;
+        for(Item itemDB : ITEM_DATABASE)
+        {
+            if(itemDB.getCategory()==category.getCategory())
+            {
+                value.add(itemDB);
+            }
+        }
+        return value;
+    }
+    
+    public static ArrayList<Item> getItemFromStatus(Item status)
+    {
+        ArrayList<Item> value=null;
+        for(Item itemDB : ITEM_DATABASE)
+        {
+            if(itemDB.getStatus()==status.getStatus())
+            {
+                value.add(itemDB);
+            }
+        }
+        return value;
+    }
+    
+    public static boolean removeItem(int id)
+    {
+        boolean value=false;
+        for(Item itemDB : ITEM_DATABASE)
+        {
+            if(itemDB.getId()==id)
+            {
+                ITEM_DATABASE.remove(id);
+                value=true;
+            }
+        }
+        return value;
+    }
 }

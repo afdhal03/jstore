@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
 * <h1>Item.java</h1>
@@ -14,8 +15,11 @@ public class DatabaseSupplier
     /**
     * List Array dari Supplier yang dibuat
     */
-    private Supplier[] listSupplier;
+    //private Supplier[] listSupplier;
     
+    
+    private static ArrayList<Supplier> SUPPLIER_DATABASE = new ArrayList<Supplier>();
+    private static int LAST_SUPPLIER_ID=0;
     /**
     * Supplier dari Object Database Supplier yang dibuat
     */
@@ -29,43 +33,78 @@ public class DatabaseSupplier
         
     }
     
-    /**
-    * Method ini merupakan method yang menambahkan Supplier baru
-    * Kedalam Database Supplier
-    * @param supplier Supplier yang ingin dimasukan kedalam database
-    * @return nilai boolean apakah pemasukan supplier berhasil atau gagal
-    */
-    public static boolean addSupplier(Supplier supplier){
-        return false;
+    //Menambah supplier
+    public static ArrayList<Supplier> getSupplierDatabase()
+    {
+        return SUPPLIER_DATABASE;
+    }
+    
+    public static int getLastSupplierID()
+    {
+        return LAST_SUPPLIER_ID;
     }
     
     /**
-    * Method ini merupakan method yang menghapus Supplier
-    * Dari Database Supplier
-    * @param supplier Supplier yang ingin dihapus dari database
-    * @return nilai boolean apakah penghapusan supplier berhasil atau gagal
-    */
-    public boolean removeSupplier(Supplier supplier){
-        return true;
+     * Method addSupplier()
+     * @param supplier
+     * @return false
+     */
+    public static boolean addSupplier(Supplier supplier)
+    {
+        boolean value=false;
+        for(Supplier supplierDB : SUPPLIER_DATABASE)
+        {
+            if(supplier.getName()!=supplierDB.getName()&&supplier.getEmail()!=supplierDB.getEmail()&&supplier.getPhoneNumber()!=supplierDB.getPhoneNumber())
+            {
+            SUPPLIER_DATABASE.add(supplier);
+            LAST_SUPPLIER_ID=supplier.getId();
+            value=true;
+            }
+        }
+        return value;
     }
     
+    //Menghapus supplier
     /**
-    * Accessor Method untuk mengambil Supplier dari objek DatabaseSupplier
-    * @return Supplier dari DatabaseSupplier Object
-    */
-    public Supplier getSupplier()
-    {
-        return listSupplier[0];
-    }
-
+     * Method remove Supplier()
+     * @param supplier
+     */
+    //Menampilkan nama supplier
     /**
-    * Accessor Method untuk mengambil List Array Supplier dari objek DatabaseSupplier
-    * @return List Array Supplier dari DatabaseSupplier Object
-    */
-    public Supplier[] getListSupllier()
+     * Method getSupplier()
+     * @return supplier
+     */
+    public Supplier getSupplier(int id)
     {
-        return listSupplier;
+        Supplier value=null;
+        for(Supplier supplierDB : SUPPLIER_DATABASE)
+        {
+            if(supplierDB.getId()==id)
+            {
+                value=supplierDB;
+            }
+        }
+        return value;
     }
-
+    
+    //Menampilkan list supplier
+    /**
+     * Method getListSupplier()
+     * @return listSupplier
+     */
+    public static boolean removeSupplier(int id)
+    {
+        boolean value=false;
+        for(Supplier supplierDB : SUPPLIER_DATABASE)
+        {
+            if(supplierDB.getId()==id)
+            {
+                DatabaseItem.getItemDatabase().removeAll(DatabaseItem.getItemFromSupplier(supplierDB));
+                SUPPLIER_DATABASE.remove(id);
+                value=true;
+            }
+        }
+        return value;
+    }
     
 }

@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Buy_Paid here.
  *
@@ -10,15 +10,17 @@ public class Sell_Paid extends Invoice
     static final private InvoiceType INVOICE_TYPE=InvoiceType.Sell;
     static final private InvoiceStatus INVOICE_STATUS=InvoiceStatus.Paid;
     private Customer customer;
-    
+    private boolean isActive;
     /**
      * Constructor for objects of class Buy_Paid
      */
-    public Sell_Paid(int id, Item item, int totalItem, Customer customer)
+    public Sell_Paid(ArrayList<Integer> item, Customer customer)
     {
-        super(id, item, totalItem);
+        super(item);
         this.customer=customer;
+        isActive=false;
     }
+
 
     /**
      * An example of a method - replace this comment with your own
@@ -50,20 +52,25 @@ public class Sell_Paid extends Invoice
     {
     }
     
-    public String toString()
+     public String toString()
     {
-        return "==========INVOICE======="+
-        "\nID ="+getId()+
-        "\nItem =" + getItem().getName()+
-        "\nAmount ="+ getTotalItem()+
-        "\nBuy date =" + getDate()+
-        "\nPrice ="+(getTotalPrice()/getTotalItem())+
-        "\nPrice total =" + getTotalPrice()+
-        "\nSupplier ID ="+ getItem().getSupplier().getId()+
-        "\nSupplier name ="+ getItem().getSupplier().getName()+
-        "\nCustomer ID ="+ getCustomer().getId()+
-        "\nCustomer name ="+ getCustomer().getName()+
-        "\nStatus = PAID"+
-        "Sell success";
+        String string="==========INVOICE=======";
+        string += "\nID ="+getId();
+        string += "\nBuy date =" + getDate();
+        for (Integer invoice : getItem())
+        {
+            Item item = DatabaseItem.getItemFromID(invoice.intValue());
+            string += "\nItem: " + item.getName();
+            string += "\nAmount: " + getItem().size();
+            string += "\nPrice: " + item.getPrice();
+            string += "\nSupplier ID: " + item.getSupplier().getId();
+            string += "\nSupplier Name: " + item.getSupplier().getName();
+        }
+        string += "\nPrice Total: " + getTotalPrice();
+        string += "\nCustomer ID: " + customer.getId();
+        string += "\nCustomer Name: " + customer.getName();
+        string += "\nStatus: " + INVOICE_STATUS;
+        string += "\nSell Success";
+        return string;
     }
 }

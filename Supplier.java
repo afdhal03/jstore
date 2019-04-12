@@ -46,9 +46,9 @@ public class Supplier
     * @param phoneNumber    Nomor Telepon dari objek supplier yang dibuat
     * @param location       Lokasi dari objek supplier yang dibuat
     */
-     public Supplier(int id, String name, String email, String phoneNumber, Location location)
+     public Supplier(String name, String email, String phoneNumber, Location location)
     {
-        this.id=id;
+        id=DatabaseSupplier.getLastSupplierID()+1;
         this.name=name;
         this.email=email;
         this.phoneNumber=phoneNumber;
