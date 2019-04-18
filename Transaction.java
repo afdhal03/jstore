@@ -94,29 +94,28 @@ public class Transaction
        //item.printData();
     }
     
-    public boolean finishTransaction(Invoice invoice)
+    public static boolean finishTransaction(Invoice invoice)
     {
-        boolean value=false;
         for (Invoice invoiceDB : DatabaseInvoice.getInvoiceDatabase()){
             if (invoiceDB.getId()==invoice.getId()){
                 invoice.setIsActive(false);
                 System.out.print(invoice.getIsActive());
-                value=true;
+                return true;
             }
         }
-        return value;
+        return false;
     }
     
-    public boolean cancelTransaction(Invoice invoice)
+    public static boolean cancelTransaction(Invoice invoice)
     {
-        boolean value=false;
         for (Invoice invoiceDB : DatabaseInvoice.getInvoiceDatabase()){
                if (invoiceDB.getId()==invoice.getId()){
                    DatabaseInvoice.removeInvoice(invoice.getId());
-                   value=true;
+                   System.out.print(invoice.getIsActive());
+                   return true;
                }
            }
-        return value;
+        return false;
     }
     
     

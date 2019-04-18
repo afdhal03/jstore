@@ -142,12 +142,15 @@ abstract public class Invoice
       
     public abstract void setInvoiceStatus(InvoiceStatus status);
     
-    public abstract String toString();
+    
     
     public void setIsActive(boolean isActive)
     {
         this.isActive=isActive;
      }
+     
+     
+     public abstract String toString();
     
     /**
     * Sebuah Method untuk melakukan Print Data dari Object Invoice (totalPrice)

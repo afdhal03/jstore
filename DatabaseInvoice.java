@@ -3,8 +3,8 @@ import java.util.ArrayList;
 /**
  * Kelas digunakan sebagai informasi database dari invoice
  *
- * @author Muhamad Luthfi Mufadel
- * @version 10/4/2019
+ * @author Afdhal Kurniawan
+ * @version 2019-02-28
  */
 
 public class DatabaseInvoice
@@ -42,28 +42,26 @@ public class DatabaseInvoice
     
     public static Invoice getInvoice(int id)
     {
-        Invoice value=null;
         for(Invoice invoice : INVOICE_DATABASE)
         {
             if(invoice.getId()==id)
             {
-                value=invoice;
+                return invoice;
             }
         }
-        return value;
+        return null;
     }
     
     public static Invoice getActiveOrderCustomer(Customer customer)
     {
-        Invoice value=null;
         for(Invoice invoice : INVOICE_DATABASE)
         {
             if((invoice.getInvoiceStatus()==InvoiceStatus.Installment||invoice.getInvoiceStatus()==InvoiceStatus.Paid)&&invoice.getIsActive()==true)
             {
-                value=invoice;
+                return invoice;
             }  
         }
-        return value;
+        return null;
     }
     
     //Menghapus supplier
@@ -73,16 +71,18 @@ public class DatabaseInvoice
      */
     public static boolean removeInvoice(int id)
     {
-        boolean value=false;
         for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(invoice.getId()==id&&invoice.getIsActive()==true)
+            if(invoice.getId()==id)
             {
-                invoice.setIsActive(false);
+                if(invoice.getIsActive()==true)
+                {
+                    invoice.setIsActive(false);
+                }
                 INVOICE_DATABASE.remove(id);
-                value=true;
+                return true;
             }
         }
-        return value;
+        return false;
     }
 }

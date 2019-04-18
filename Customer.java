@@ -32,7 +32,7 @@ public class Customer
         this.birthDate=birthDate;
     }
     
-    public Customer(String name,String email,String username,String password,int id,int year,int month,int dayOfMonth)
+     public Customer(String name,String email,String username,String password,int year,int month,int dayOfMonth)
     {
         // initialise instance variables
         this.name=name;

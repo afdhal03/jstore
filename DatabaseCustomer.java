@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 /**
- * Write a description of class DatabaseCostumer here.
+ * Write a description of class DatabaseCustomer here.
  *
  * @author (your name)
  * @version (a version number or a date)
@@ -38,19 +38,18 @@ public class DatabaseCustomer
      * Method remove Supplier()
      * @param supplier
      */
-    public static boolean addCustomer(Customer customer)
+     public static boolean addCustomer(Customer customer)
     {
-        boolean value=false;
         for(Customer customerDB : CUSTOMER_DATABASE)
         {
-            if(customer.getName()!=customerDB.getName()&&customer.getEmail()!=customerDB.getEmail())
+            if(customer.getName()==customerDB.getName()&&customer.getEmail()==customerDB.getEmail())
             {
-            CUSTOMER_DATABASE.add(customer);
-            LAST_CUSTOMER_ID=customer.getId();
-            value=true;
+            return false;
             }
         }
-        return value;
+        CUSTOMER_DATABASE.add(customer);
+        LAST_CUSTOMER_ID=customer.getId();
+        return true;
     }
     
     //Menampilkan nama supplier
@@ -60,15 +59,14 @@ public class DatabaseCustomer
      */
     public static Customer getCustomer(int id)
     {
-        Customer value=null;
         for(Customer customerDB : CUSTOMER_DATABASE)
         {
             if(customerDB.getId()==id)
             {
-                value=customerDB;
+                return customerDB;
             }
         }
-        return value;
+        return null;
     }
     
     //Menampilkan list supplier
@@ -78,16 +76,15 @@ public class DatabaseCustomer
      */
     public static boolean removeCustomer(int id)
     {
-        boolean value=false;
         for(Customer customerDB : CUSTOMER_DATABASE)
         {
             if(customerDB.getId()==id)
             {
                 CUSTOMER_DATABASE.remove(id);
-                value=true;
+                return true;
             }
         }
-        return value;
+        return false;
     }
        
     

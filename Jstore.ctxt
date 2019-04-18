@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=Jstore
-comment0.text=\r\n\ <h1>JStore.java</h1>\r\n\ <p>\r\n\ Class\ ini\ merupakan\ main\ class\ dari\ JStore\ Application\r\n\ </p>\r\n\r\n\ @author\ afdhal\ kurniawan\r\n\ @version\ 2019-02-28\r\n
 comment1.params=
 comment1.target=Jstore()
 comment1.text=\r\n\ Method\ JStore\ merupakan\ Constructor\ dari\ JStore\ Class\r\n\ Method\ ini\ dapat\ berisi\ nilai\ default\ dari\ variabel\ dalam\ JStore\ Class\r\n

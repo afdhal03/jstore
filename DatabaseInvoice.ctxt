@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=DatabaseInvoice
-comment0.text=\r\n\ Kelas\ digunakan\ sebagai\ informasi\ database\ dari\ invoice\r\n\r\n\ @author\ Muhamad\ Luthfi\ Mufadel\r\n\ @version\ 10/4/2019\r\n
+comment0.text=\r\n\ Kelas\ digunakan\ sebagai\ informasi\ database\ dari\ invoice\r\n\r\n\ @author\ Afdhal\ Kurniawan\r\n\ @version\ 2019-02-28\r\n
 comment1.params=
 comment1.target=java.util.ArrayList\ getInvoiceDatabase()
 comment2.params=

@@ -51,17 +51,16 @@ public class DatabaseSupplier
      */
     public static boolean addSupplier(Supplier supplier)
     {
-        boolean value=false;
         for(Supplier supplierDB : SUPPLIER_DATABASE)
         {
-            if(supplier.getName()!=supplierDB.getName()&&supplier.getEmail()!=supplierDB.getEmail()&&supplier.getPhoneNumber()!=supplierDB.getPhoneNumber())
+            if(supplier.getName()==supplierDB.getName()&&supplier.getEmail()==supplierDB.getEmail()&&supplier.getPhoneNumber()==supplierDB.getPhoneNumber())
             {
-            SUPPLIER_DATABASE.add(supplier);
-            LAST_SUPPLIER_ID=supplier.getId();
-            value=true;
+            return false;
             }
         }
-        return value;
+        SUPPLIER_DATABASE.add(supplier);
+        LAST_SUPPLIER_ID=supplier.getId();
+        return true;
     }
     
     //Menghapus supplier
@@ -74,17 +73,16 @@ public class DatabaseSupplier
      * Method getSupplier()
      * @return supplier
      */
-    public Supplier getSupplier(int id)
+    public static Supplier getSupplier(int id)
     {
-        Supplier value=null;
         for(Supplier supplierDB : SUPPLIER_DATABASE)
         {
             if(supplierDB.getId()==id)
             {
-                value=supplierDB;
+                return supplierDB;
             }
         }
-        return value;
+        return null;
     }
     
     //Menampilkan list supplier
@@ -94,17 +92,19 @@ public class DatabaseSupplier
      */
     public static boolean removeSupplier(int id)
     {
-        boolean value=false;
         for(Supplier supplierDB : SUPPLIER_DATABASE)
         {
             if(supplierDB.getId()==id)
             {
                 DatabaseItem.getItemDatabase().removeAll(DatabaseItem.getItemFromSupplier(supplierDB));
                 SUPPLIER_DATABASE.remove(id);
-                value=true;
+                return true;
             }
         }
-        return value;
+        return false;
     }
+    
+    
+    
     
 }

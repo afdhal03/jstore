@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Sell_Unpaid extends Invoice
 {
     // instance variables - replace the example below with your own
-    private static final InvoiceType INVOICE_TYPE= InvoiceType.Sell;
-    private static final InvoiceStatus INVOICE_STATUS= InvoiceStatus.Unpaid;
+    static final private InvoiceType INVOICE_TYPE= InvoiceType.Sell;
+    static final private InvoiceStatus INVOICE_STATUS= InvoiceStatus.Unpaid;
     private Calendar dueDate;
     private Customer customer;
     private boolean isActive;
