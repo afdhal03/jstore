@@ -34,22 +34,17 @@ public class Buy_Paid extends Invoice
     
     public String toString()
     {
-        String string="==========INVOICE=======";
-        string += "\nID ="+getId();
-        string += "\nBuy date =" + getDate();
-        for (Integer invoice : getItem())
-        {
-            Item item = DatabaseItem.getItemFromID(invoice.intValue());
-            string += "\nItem: " + item.getName();
-            string += "\nAmount: " + getItem().size();
-            string += "\nPrice: " + item.getPrice();
-            string += "\nSupplier ID: " + item.getSupplier().getId();
-            string += "\nSupplier Name: " + item.getSupplier().getName();
+        StringBuilder total = new StringBuilder();
+        for(int a : item){
+            Item temp = DatabaseItem.getItemFormID(a);
+            String stringTemp = null;
+            if (temp != null) {
+                stringTemp = temp.toString();
+                total.append(stringTemp);
+            }
+            total.append("\n");
         }
-        string += "\nPrice Total: " + getTotalPrice();
-        string += "\nStatus: " + INVOICE_STATUS;
-        string += "\nBuy Success";
-        return string;
+        return total.toString();
     }
     
     public void printData(){

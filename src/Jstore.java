@@ -25,6 +25,7 @@ public class Jstore{
     */
     public static void main (String[] args){
       Location lokasi = new Location ( "sumbar","panas","padang");
+        System.out.println("\n================== Supplier Already Exist ==================");
         try {
             DatabaseSupplier.addSupplier(new Supplier("afdhal1","afdhal1@gmail.com","1234561",lokasi));
             DatabaseSupplier.addSupplier(new Supplier("afdhal2","afdhal2@gmail.com","1234562",lokasi));
@@ -39,6 +40,7 @@ public class Jstore{
           System.out.println(s);
       }
 
+        System.out.println("\n================== Customer Already Exist ==================");
         try {
             DatabaseCustomer.addCustomer(new Customer("kurniawan1","kurniawan1@gmail.com","kurniawan_1","password1",1998,3,1));
             DatabaseCustomer.addCustomer(new Customer("kurniawan2","kurniawan2@gmail.com","kurniawan_2","password2",1998,3,2));
@@ -52,7 +54,7 @@ public class Jstore{
           System.out.println(c);
       }
 
-
+        System.out.println("\n================== Item Already Exist ==================");
         try {
             DatabaseItem.addItem(new Item("soto1",1000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(1)));
             DatabaseItem.addItem(new Item("soto2",2000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(2)));
@@ -67,6 +69,7 @@ public class Jstore{
       }
 
 
+        System.out.println("\n================== Invoice Already Exist ==================");
       ArrayList<Integer> item1 = new ArrayList<>();
       item1.add(1);
       item1.add(2);
@@ -79,26 +82,60 @@ public class Jstore{
             System.out.println(e.getExMessage());
         }
 
-             
-      
-     
-      //Transaction.finishTransaction(DatabaseInvoice.getInvoice(1));
-      //Transaction.cancelTransaction(DatabaseInvoice.getInvoice(2));
-        //for(Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        //{
-          //  System.out.println(invoice);
-        //}
-       
-        
-       //Location location = new Location("Depok", "Jawa Barat", "ramai");
-       //Supplier supplier = new Supplier(1, "afdhal", "afdhal.com", "123",location);
-       //Item item = new Item(1, "Afdhal", 100, ItemStatus.New, 10000, supplier , ItemCategory.Electronics);
-       //DatabaseItem.addItem(item);
-       //Transaction.orderNewItem(DatabaseItem.getItem());
-       //Transaction.sellItemPaid(DatabaseItem.getItem());
-       //Transaction.sellItemUnpaid(DatabaseItem.getItem());
-       //Transaction.sellItemInstallment(DatabaseItem.getItem());
-             
+        System.out.println("\n================== Supplier Not Found ==================");
+        try {
+            DatabaseSupplier.removeSupplier(5);
+        } catch (SupplierNotFoundException e) {
+            System.out.println(e.getExMessage());
+        }
+
+        System.out.println("\n================== Customer Not Found ==================");
+        try {
+            DatabaseCustomer.removeCustomer(5);
+        } catch (CustomerNotFoundException e) {
+            System.out.println(e.getExMessage());
+        }
+
+        System.out.println("\n================== Item Not Found ==================");
+        try {
+            DatabaseItem.removeItem(5);
+        } catch (ItemNotFoundException e) {
+            System.out.println(e.getExMessage());
+        }
+
+        System.out.println("\n================== Invoice Not Found ==================");
+        try {
+            DatabaseInvoice.removeInvoice(5);
+        } catch (InvoiceNotFoundException e) {
+            System.out.println(e.getExMessage());
+        }
+
+        System.out.println("\n================== Don't Have Active ==================");
+        try {
+            DatabaseInvoice.getActiveOrder(DatabaseCustomer.getCustomer(2));
+        } catch (CustomerDoesntHaveActiveException e) {
+            System.out.println(e.getExMessage());
+        }
+
+        System.out.println("\n========================RESULT========================");
+        System.out.println("========================Supplier========================");
+        for(Supplier supplier : DatabaseSupplier.getSupplierDatabase()){
+            System.out.println(supplier);
+        }
+        System.out.println("========================Item========================");
+        for(Item item : DatabaseItem.getItemDatabase()){
+            System.out.println(item);
+        }
+        System.out.println("========================Customer========================");
+        for( Customer cus : DatabaseCustomer.getCustomerDatabase()){
+            System.out.println(cus);
+        }
+        System.out.println("========================Invoice========================");
+        for(Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
+            System.out.println(invoice);
+        }
+
+
        
     }
       

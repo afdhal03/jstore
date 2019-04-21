@@ -20,7 +20,7 @@ abstract public class Invoice
     /**
     * Item dari Object Invoice yang dibuat
     */
-    private ArrayList<Integer> item;
+    protected ArrayList<Integer> item;
     
     /**
     * Tanggal dari Object Invoice yang dibuat
@@ -30,15 +30,10 @@ abstract public class Invoice
     /**
     * Total Harga dari Object Invoice yang dibuat
     */
-    private int totalPrice;
+    protected int totalPrice;
     
     private boolean isActive;
     private Customer customer;
-    
-    //private int totalItem;
-    //private InvoiceStatus status;
-    //private InvoiceType type;
-    
     
 
     /**
@@ -51,8 +46,9 @@ abstract public class Invoice
     */
     public Invoice(ArrayList<Integer> item)
     {
-        this.item=item;
-        id=DatabaseInvoice.getLastInvoiceID()+1;
+        this.id = DatabaseInvoice.getLastInvoiceID() + 1;
+        setItem(item);
+
     }
     
     /**
@@ -132,14 +128,11 @@ abstract public class Invoice
     * Mutator Method untuk mengubah ID dari objek Invoice
     * @param totalPrice Nilai TotalPrice yang diinginkan
     */
-    public void setTotalPrice(int totalPrice)
-    {
-        for(Integer invoice : item)
-        {
-            totalPrice=totalPrice+DatabaseItem.getItemFromID(invoice).getPrice();
-        }
+    public void setTotalPrice (int totalPrice) {
+        this.totalPrice = totalPrice;
     }
-      
+
+
     public abstract void setInvoiceStatus(InvoiceStatus status);
     
     
