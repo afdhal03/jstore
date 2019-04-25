@@ -66,6 +66,19 @@ public class DatabaseCustomer {
         return hasil;
     }
 
+
+
+    public static Customer getCustomerLogin(String email, String password){
+        for (Customer customerPtr : CUSTOMER_DATABASE){
+            if (customerPtr.getEmail().equals(email) && customerPtr.getPassword().equals(password))
+            {
+                return customerPtr;
+            }
+        }
+        return null;
+    }
+
+
     /**
      * This is method for remove customer
      * @param id integer
