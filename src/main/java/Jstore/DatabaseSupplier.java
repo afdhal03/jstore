@@ -11,83 +11,58 @@
 
 package jstore;
 import java.util.ArrayList;
+public class DatabaseSupplier {
+    //private Supplier[] listSupplier;
+    //private Supplier supplier;
+    private static ArrayList<Supplier> SUPPLIER_DATABASE = new ArrayList<Supplier>();
+    private static int LAST_SUPPLIER_ID = 0;
 
-public class DatabaseSupplier
-{
-    private static ArrayList<Supplier> supplier_database = new ArrayList<Supplier>();
-    private static int last_supplier_id = 0;
-
-    public DatabaseSupplier(){
-
-    }
-
-    /**
-     * This is accessor for get last customer ID
-     * @return supplier_database
-     */
     public static ArrayList<Supplier> getSupplierDatabase() {
-        return supplier_database;
+        return SUPPLIER_DATABASE;
     }
 
-    /**
-     * This is accessor for get last supplier ID
-     * @return last_supplier_id.
-     */
     public static int getLastSupplierID() {
-        return last_supplier_id;
+        return LAST_SUPPLIER_ID;
     }
 
-    /**
-     * This method is used to insert new supplier to database
-     * @param supplier this is the only parameter
-     * @return boolean
-     */
-    public static boolean addSupplier(Supplier supplier) throws SupplierAlreadyExistsException{
-        boolean suplaier = true;
-        for (Supplier supplier1 : supplier_database) {
-            if (supplier1.getName() == supplier.getName() &&
-                    supplier1.getEmail() == supplier.getEmail() &&
-                    supplier1.getPhoneNumber() == supplier.getPhoneNumber()) {
-                //suplaier = false;
+    public static boolean addSupplier(Supplier supplier)
+            throws SupplierAlreadyExistsException {
+        for (Supplier temp : SUPPLIER_DATABASE) {
+            if (((temp.getEmail().equals(supplier.getEmail())) || (temp.getPhoneNumber().equals(supplier.getPhoneNumber())))) {
                 throw new SupplierAlreadyExistsException(supplier);
             }
         }
-        if (supplier_database.add(supplier)){
-            last_supplier_id++;
-            suplaier=true;
-        }
-        return suplaier;
+        SUPPLIER_DATABASE.add(supplier);
+        LAST_SUPPLIER_ID = supplier.getId();
+        return true;
     }
 
-    /**
-     * This method is used to remove supplier to database
-     * @return boolean
-     * @param id this is the only parameter
-     */
-    public static boolean removeSupplier(int id) throws SupplierNotFoundException{
-        for (Supplier supplier1 : supplier_database) {
-            if (supplier1.getId() == id) {
-                DatabaseItem.getItemDatabase().removeAll(DatabaseItem.getItemFromSupplier(supplier1));
-                supplier_database.remove(id);
+    public static Supplier getSupplier(int id) {
+        for (Supplier supplier : SUPPLIER_DATABASE) {
+            if (supplier.getId() == id) {
+                return supplier;
+            }
+        }
+        return null;
+    }
+
+    public static boolean removeSupplier(int id) throws SupplierNotFoundException {
+        for ( Supplier sup : SUPPLIER_DATABASE ){
+            if (sup.getId() == id) {
+                ArrayList<Item> temp = DatabaseItem.getItemFromSupplier(sup);
+                if (temp != null) {
+                    for (Item item : temp){
+                        try {
+                            DatabaseItem.removeItem(item.getId());
+                        } catch (ItemNotFoundException e) {
+                            System.out.print(e.getExMessage());
+                        }
+                    }
+                }
+                SUPPLIER_DATABASE.remove(sup);
                 return true;
             }
         }
         throw new SupplierNotFoundException(id);
     }
-
-    /**
-     * This is accessor for get supplier
-     * @param id integer
-     * @return item.
-     */
-    public static Supplier getSupplier(int id) {
-        Supplier hasil = null;
-        for (Supplier supplier1 : supplier_database) {
-            if (supplier1.getId() == id) {
-                hasil = supplier1;
-            }
-        }
-        return hasil;
-    }
-
 }

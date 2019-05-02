@@ -38,15 +38,18 @@ public class Jstore{
     public static void main (String[] args){
 
         SpringApplication.run(Jstore.class, args);
+        //1 lokasi
+         //   3 supplier
+          //  4 item
 
-        /*
+
       Location lokasi = new Location ( "sumbar","panas","padang");
         System.out.println("\n================== Supplier Already Exist ==================");
         try {
             DatabaseSupplier.addSupplier(new Supplier("afdhal1","afdhal1@gmail.com","1234561",lokasi));
             DatabaseSupplier.addSupplier(new Supplier("afdhal2","afdhal2@gmail.com","1234562",lokasi));
             DatabaseSupplier.addSupplier(new Supplier("afdhal3","afdhal3@gmail.com","1234563",lokasi));
-            DatabaseSupplier.addSupplier(new Supplier("afdhal3","afdhal3@gmail.com","1234563",lokasi));
+            //DatabaseSupplier.addSupplier(new Supplier("afdhal3","afdhal3@gmail.com","1234563",lokasi));
         } catch (SupplierAlreadyExistsException e) {
             System.out.println(e.getExMessage());
         }
@@ -54,8 +57,27 @@ public class Jstore{
       for(Supplier s : DatabaseSupplier.getSupplierDatabase())
       {
           System.out.println(s);
+
       }
 
+
+        System.out.println("\n================== Item Already Exist ==================");
+        try {
+            DatabaseItem.addItem(new Item("soto1",1000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(1)));
+            DatabaseItem.addItem(new Item("soto2",2000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(2)));
+            DatabaseItem.addItem(new Item("soto3",3000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(3)));
+            DatabaseItem.addItem(new Item("soto4",4000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(4)));
+        } catch (ItemAlreadyExistsException e) {
+            System.out.println(e.getExMessage());
+        }
+
+        for(Item i : DatabaseItem.getItemDatabase())
+        {
+            System.out.println(i);
+        }
+
+
+/*
         System.out.println("\n================== Customer Already Exist ==================");
         try {
             DatabaseCustomer.addCustomer(new Customer("kurniawan1","kurniawan1@gmail.com","kurniawan_1","password1",1998,3,1));
@@ -69,21 +91,9 @@ public class Jstore{
       {
           System.out.println(c);
       }
+*/
 
-        System.out.println("\n================== Item Already Exist ==================");
-        try {
-            DatabaseItem.addItem(new Item("soto1",1000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(1)));
-            DatabaseItem.addItem(new Item("soto2",2000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(2)));
-            DatabaseItem.addItem(new Item("soto3",3000,ItemCategory.Electronics,ItemStatus.New,DatabaseSupplier.getSupplier(3)));
-        } catch (ItemAlreadyExistsException e) {
-            System.out.println(e.getExMessage());
-        }
-
-      for(Item i : DatabaseItem.getItemDatabase())
-      {
-          System.out.println(i);
-      }
-
+/*
 
         System.out.println("\n================== Invoice Already Exist ==================");
       ArrayList<Integer> item1 = new ArrayList<>();

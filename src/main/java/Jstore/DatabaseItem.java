@@ -11,98 +11,99 @@
 
 package jstore;
 import java.util.ArrayList;
-
 public class DatabaseItem
 {
-    // variabel yang digunakan dalam class
-    private static ArrayList<Item> item_database = new ArrayList<Item>();
-    private static int last_item_id=0;
-
-    public static ArrayList<Item> getItemDatabase(){
-        return item_database;
+    //private Item[] listItem;
+    //public static Item itemDB;
+    private static ArrayList<Item> ITEM_DATABASE= new ArrayList<Item>();
+    private static int LAST_ITEM_ID = 0;
+ 
+    public static ArrayList<Item> getItemDatabase()
+    {
+        return ITEM_DATABASE;
     }
-    public static int getLastItemID(){
-        return last_item_id;
+    
+    public static int getLastItemID()
+    {
+        return LAST_ITEM_ID;
     }
-
-    /**
-     * This method is used to insert new item to database
-     * @param item this is the only parameter
-     */
-    public static boolean addItem(Item item) throws ItemAlreadyExistsException {
-        boolean tmbh = false;
-        for (Item item1 : item_database) {
-            if (item1.getName() == item.getName() &&
-                    item1.getCategory() == item.getCategory() &&
-                    item1.getStatus() == item.getStatus() &&
-                    item1.getSupplier() == item.getSupplier()) {
+    
+    public static boolean addItem(Item item) throws ItemAlreadyExistsException
+    {
+        for (Item itemDB1 : ITEM_DATABASE ) {
+            if(((itemDB1.getName().equals(item.getName())) && (itemDB1.getStatus() == item.getStatus()) &&
+                    (itemDB1.getSupplier() == item.getSupplier()) && (itemDB1.getSupplier() == item.getSupplier()))){
                 throw new ItemAlreadyExistsException(item);
             }
         }
-        if (item_database.add(item)) {
-            last_item_id++;
-            tmbh=true;
-        }
-        return tmbh;
+        ITEM_DATABASE.add(item);
+        LAST_ITEM_ID = item.getId();
+        return true;
     }
 
-    /**
-     * This is accessor for get item
-     * @return item.
-     */
     public static Item getItemFromID(int id)
     {
-        Item hasil=null;
-        for (Item item2 : item_database){
-            if (item2.getId()==id){
-                hasil=item2;
+       for (Item itemDB2 : ITEM_DATABASE){
+            if (itemDB2.getId() == id)
+            {
+                return itemDB2;
             }
-        }
-        return hasil;
+       }
+       return null;
     }
+    
     public static ArrayList<Item> getItemFromSupplier(Supplier supplier)
     {
-        ArrayList<Item> hasil2 = null;
-        for (Item item3 : item_database){
-            if (item3.getSupplier()==supplier){
-                hasil2.add(item3);
+        ArrayList<Item> itemDB3 = new ArrayList<Item>();
+        for (Item item : ITEM_DATABASE){
+            if (item.getSupplier() == supplier ){
+                itemDB3.add(item);
             }
         }
-        return hasil2;
+        if (itemDB3 != null){
+            return itemDB3;
+        }
+        return null;
     }
-    public static ArrayList<Item> getItemFromCategory(Item category)
+    
+    public static ArrayList<Item> getItemFromCategory(ItemCategory category)
     {
-        ArrayList<Item> hasil2 = null;
-        for (Item item3 : item_database){
-            if (item3.getCategory()==category.getCategory()){
-                hasil2.add(item3);
+        ArrayList<Item> itemDB4 = new ArrayList<Item>();
+        for (Item item : ITEM_DATABASE){
+            if (item.getCategory() == category ){
+                itemDB4.add(item);
             }
         }
-        return hasil2;
+        if (itemDB4 != null){
+            return itemDB4;
+        }
+        return null;
     }
-    public static ArrayList<Item> getItemFromStatus(Item status)
+    
+    public static ArrayList<Item> getItemFromStatus(ItemStatus status)
     {
-        ArrayList<Item> hasil2 = null;
-        for (Item item3 : item_database){
-            if (item3.getStatus()==status.getStatus()){
-                hasil2.add(item3);
+        ArrayList<Item> bar = new ArrayList<Item>();
+        for (Item item : ITEM_DATABASE){
+            if (item.getStatus() == status ){
+                bar.add(item);
             }
         }
-        return hasil2;
+        if (bar != null){
+            return bar;
+        }
+        return null;
     }
-    /**
-     * This method is used to remove item to database
-     * @param id this is the only parameter
-     */
-    public static boolean removeItem(int id) throws ItemNotFoundException
+    
+    public static boolean removeItem(int id)
+            throws ItemNotFoundException
     {
-        for (Item item1 : item_database) {
-            if (item1.getId() == id ) {
-                item_database.remove(id);
+        for(Item item : ITEM_DATABASE){
+            if(item.getId() == id)
+            {
+                ITEM_DATABASE.remove(id);
                 return true;
             }
         }
         throw new ItemNotFoundException(id);
     }
-
 }

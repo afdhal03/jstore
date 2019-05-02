@@ -174,8 +174,8 @@ public class Item
         "\nName :"  + name+
         //"\nStok :" + stock+
         "\nKategori :" + category+
-        "\nStatus :" + status+
-        "\nSupplier :" + supplier.getName();
+        "\nStatus :" + status;
+//        "\nSupplier :" + supplier.getName();
     }
     
     public void printData(){
